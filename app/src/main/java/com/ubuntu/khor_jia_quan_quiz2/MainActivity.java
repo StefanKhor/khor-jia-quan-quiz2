@@ -1,6 +1,8 @@
 package com.ubuntu.khor_jia_quan_quiz2;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +14,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import java.lang.Exception;
+import java.text.BreakIterator;
 
 public class MainActivity extends AppCompatActivity {
     private Button button1;
@@ -43,10 +46,11 @@ public class MainActivity extends AppCompatActivity {
         B = (EditText) findViewById(R.id.B);
         C = (EditText) findViewById(R.id.C);
         result = (TextView) findViewById(R.id.Result);
+
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 try {
-                    int r = Integer.parseInt(A.getText().toString())+Integer.parseInt(B.getText().toString())+Integer.parseInt(C.getText().toString());
+                    int r = getIntFromEditText(A)+getIntFromEditText(B)+getIntFromEditText(C);
                     result.setText("" + r);
                 }
                 catch (Exception e){
@@ -58,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 try {
-                    int r = Integer.parseInt(A.getText().toString())-Integer.parseInt(B.getText().toString())+Integer.parseInt(C.getText().toString());
+                    int r = getIntFromEditText(A)-getIntFromEditText(B)+getIntFromEditText(C);
                     result.setText("" + r);
                 }
                 catch (Exception e){
@@ -70,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 try {
-                    int r = Integer.parseInt(A.getText().toString())*Integer.parseInt(B.getText().toString())-Integer.parseInt(C.getText().toString());
+                    int r = getIntFromEditText(A)*getIntFromEditText(B)-getIntFromEditText(C);
                     result.setText("" + r);
                 }
                 catch (Exception e){
@@ -78,5 +82,18 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    public int getIntFromEditText(EditText ax) {
+        String text = ax.getText().toString();
+        if (text.isEmpty()) {
+            return 0;
+        } else {
+            try {
+                return Integer.parseInt(text);
+            } catch (NumberFormatException e) {
+                result.setText("Invalid Number");
+                return 0;
+            }
+        }
     }
 }
