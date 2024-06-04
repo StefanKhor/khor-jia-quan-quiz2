@@ -47,6 +47,13 @@ public class MainActivity extends AppCompatActivity {
         C = (EditText) findViewById(R.id.C);
         result = (TextView) findViewById(R.id.Result);
 
+        if (savedInstanceState != null) {
+            A.setText(savedInstanceState.getString("valueA"));
+            B.setText(savedInstanceState.getString("valueB"));
+            C.setText(savedInstanceState.getString("valueC"));
+            result.setText(savedInstanceState.getString("result"));
+        }
+
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 try {
@@ -82,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+
     }
     public int getIntFromEditText(EditText ax) {
         String text = ax.getText().toString();
@@ -95,5 +104,14 @@ public class MainActivity extends AppCompatActivity {
                 return 0;
             }
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("valueA", A.getText().toString());
+        outState.putString("valueB", B.getText().toString());
+        outState.putString("valueC", C.getText().toString());
+        outState.putString("result", result.getText().toString());
     }
 }
