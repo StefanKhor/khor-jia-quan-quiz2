@@ -15,10 +15,14 @@ import java.lang.Exception;
 
 public class MainActivity extends AppCompatActivity {
     private Button button1;
+    private Button button2;
+    private Button button3;
 
     private EditText A;
     private EditText B;
     private EditText C;
+
+    private TextView result;
 
 
     @Override
@@ -32,14 +36,41 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         button1 = (Button) findViewById(R.id.button1);
+        button2 = (Button) findViewById(R.id.button2);
+        button3 = (Button) findViewById(R.id.button3);
+
         A = (EditText) findViewById(R.id.A);
         B = (EditText) findViewById(R.id.B);
         C = (EditText) findViewById(R.id.C);
-        TextView result = (TextView) findViewById(R.id.Result);
+        result = (TextView) findViewById(R.id.Result);
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 try {
                     int r = Integer.parseInt(A.getText().toString())+Integer.parseInt(B.getText().toString())+Integer.parseInt(C.getText().toString());
+                    result.setText("" + r);
+                }
+                catch (Exception e){
+                    result.setText("Invalid Input");
+                }
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                try {
+                    int r = Integer.parseInt(A.getText().toString())-Integer.parseInt(B.getText().toString())+Integer.parseInt(C.getText().toString());
+                    result.setText("" + r);
+                }
+                catch (Exception e){
+                    result.setText("Invalid Input");
+                }
+            }
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                try {
+                    int r = Integer.parseInt(A.getText().toString())*Integer.parseInt(B.getText().toString())-Integer.parseInt(C.getText().toString());
                     result.setText("" + r);
                 }
                 catch (Exception e){
