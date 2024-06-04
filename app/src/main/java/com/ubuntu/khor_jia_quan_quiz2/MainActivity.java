@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 try {
-                    double r = Double.parseDouble(A.getText().toString())+Double.parseDouble(B.getText().toString())+Double.parseDouble(C.getText().toString());
+                    int r = Integer.parseInt(A.getText().toString())+Integer.parseInt(B.getText().toString())+Integer.parseInt(C.getText().toString());
                     result.setText("" + r);
                 }
                 catch (Exception e){
